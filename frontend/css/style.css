@@ -79,9 +79,4 @@ font-weight:bold;
 
 /* center login/signup */
 form{
-background:#FAF7F0;
-padding:20px;
-border-radius:8px;
-width:250px;
-border:1px solid #C7B7A3;
-} 
+background:#FAF7F0;}
