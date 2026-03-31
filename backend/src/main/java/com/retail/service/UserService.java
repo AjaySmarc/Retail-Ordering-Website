@@ -15,7 +15,17 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User login(String email){
-        return userRepository.findByEmail(email);
+    @Autowired
+UserRepository repo;
+
+public User login(String email, String password){
+
+    User user = repo.findByEmail(email);
+
+    if(user != null && user.getPassword().equals(password)){
+        return user;
     }
+
+    return null;
+}
 }

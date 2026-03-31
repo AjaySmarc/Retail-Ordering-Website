@@ -1,19 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Cart</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Pizza Haven</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-pizza-slice"></i>
+                <span>Pizza Haven</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="cart.html" class="active">Cart <span id="cartCount" class="cart-badge">0</span></a>
+                <a href="#" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </nav>
 
-<h2>Your Cart</h2>
+    <main>
+        <div class="container">
+            <h1>Shopping Cart</h1>
+            <div class="cart-container">
+                <div class="cart-items" id="cartItems"></div>
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-details">
+                        <p>Subtotal: <span id="subtotal">$0.00</span></p>
+                        <p>Tax (10%): <span id="tax">$0.00</span></p>
+                        <p>Delivery Fee: <span id="deliveryFee">$2.99</span></p>
+                        <p class="total">Total: <span id="total">$0.00</span></p>
+                    </div>
+                    <button id="checkoutBtn" class="btn btn-primary btn-block">Proceed to Checkout</button>
+                    <button id="clearCartBtn" class="btn btn-secondary btn-block">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
 
-<div id="cart"></div>
-
-<button onclick="placeOrder()">Place Order</button>
-
-<script src="js/cart.js"></script>
-
+    <script src="js/common.js"></script>
+    <script src="js/cart.js"></script>
 </body>
 </html>

@@ -1,20 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Menu</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Haven - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-pizza-slice"></i>
+                <span>Pizza Haven</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="cart.html">Cart <span id="cartCount" class="cart-badge">0</span></a>
+                <a href="#" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </nav>
 
-<h1>Food Menu</h1>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Fresh Hot Pizza <br>Delivered to Your Doorstep</h1>
+                    <p>Authentic Italian pizzas made with love. Order now and get 30% off on your first order!</p>
+                    <a href="menu.html" class="btn btn-primary">Order Now</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500" alt="Pizza">
+                </div>
+            </div>
+        </section>
 
-<div id="menu"></div>
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Us?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-truck"></i>
+                        <h3>Fast Delivery</h3>
+                        <p>30-45 minutes delivery guaranteed</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-medal"></i>
+                        <h3>Quality Ingredients</h3>
+                        <p>100% fresh and authentic</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-tag"></i>
+                        <h3>Best Offers</h3>
+                        <p>Daily deals and combo offers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<a href="cart.html">Go to Cart</a>
+        <section class="specials">
+            <div class="container">
+                <h2>Today's Specials</h2>
+                <div class="specials-grid" id="specialsGrid"></div>
+            </div>
+        </section>
+    </main>
 
-<script src="js/api.js"></script>
-<script src="js/app.js"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Pizza Haven. All rights reserved.</p>
+        </div>
+    </footer>
 
+    <script src="js/common.js"></script>
+    <script>
+        if (!localStorage.getItem('userId')) {
+            window.location.href = 'login.html';
+        }
+        
+        async function loadSpecials() {
+            try {
+                const response = await fetch('http://localhost:8080/menu');
+                const items = await response.json();
+                const specials = items.slice(0, 3);
+                const grid = document.getElementById('specialsGrid');
+                grid.innerHTML = specials.map(item => `
+                    <div class="special-card">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <span class="price">$${item.price}</span>
+                        <button onclick="addToCart(${item.id})" class="btn btn-small">Add to Cart</button>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading specials:', error);
+            }
+        }
+        
+        async function addToCart(productId) {
+            const userId = localStorage.getItem('userId');
+            try {
+                await fetch('http://localhost:8080/cart/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: parseInt(userId), productId, quantity: 1 })
+                });
+                updateCartCount();
+                alert('Added to cart!');
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+            }
+        }
+        
+        loadSpecials();
+        updateCartCount();
+    </script>
 </body>
 </html>
