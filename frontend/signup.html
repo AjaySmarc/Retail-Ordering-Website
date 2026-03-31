@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<h2>Signup</h2>
+
+<form id="signupForm">
+
+<input type="text" id="name" placeholder="Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="password" id="password" placeholder="Password" required>
+
+<button>Create Account</button>
+
+</form>
+
+<script>
+
+document.getElementById("signupForm").onsubmit = async e => {
+
+e.preventDefault();
+
+await fetch("http://localhost:8080/api/auth/signup",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+name:name.value,
+email:email.value,
+password:password.value
+})
+});
+
+alert("Signup success");
+
+window.location="login.html";
+
+};
+
+</script>
+
+</body>
+</html>
