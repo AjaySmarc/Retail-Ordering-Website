@@ -1,0 +1,87 @@
+body{
+font-family: Arial, sans-serif;
+margin:40px;
+background-color:#EDE8D0;
+color:#3A2D28;
+}
+
+/* headings */
+h1,h2,h3{
+color:#3A2D28;
+}
+
+/* links */
+a{
+color:#6F5E53;
+text-decoration:none;
+margin-right:15px;
+font-weight:bold;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+/* form inputs */
+input{
+display:block;
+margin:10px 0;
+padding:10px;
+width:220px;
+border:1px solid #C7B7A3;
+background:#FAF7F0;
+border-radius:5px;
+}
+
+/* buttons */
+button{
+background:#A98467;
+color:white;
+padding:10px 18px;
+border:none;
+cursor:pointer;
+border-radius:6px;
+}
+
+button:hover{
+background:#8C6A52;
+}
+
+/* menu cards */
+#menu div{
+background:#FAF7F0;
+border:1px solid #C7B7A3;
+padding:15px;
+margin:15px 0;
+border-radius:8px;
+box-shadow:0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* cart items */
+#cart p{
+background:#FAF7F0;
+padding:10px;
+border-radius:6px;
+border:1px solid #C7B7A3;
+}
+
+/* page container look */
+.container{
+max-width:600px;
+margin:auto;
+}
+
+/* success message */
+.success{
+color:green;
+font-weight:bold;
+}
+
+/* center login/signup */
+form{
+background:#FAF7F0;
+padding:20px;
+border-radius:8px;
+width:250px;
+border:1px solid #C7B7A3;
+} 
